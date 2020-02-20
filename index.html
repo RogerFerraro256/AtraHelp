@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form>
+        
+        
+            <!--Tècnico Nºos saida e retorno, DT, serviço executado, mac, equipamento 
+            -->
+        
+            Técnico:<Select id="tecnicos" required>
+                <option value="Alex Cristiano Fernandes Spindola">Spindola </option>
+                <option value="Clezio de Sousa Rodrigues">Clezio </option>
+                <option value="Matheus Pires Batista">Matheus </option>
+                <option value="Samuel Gomes Ferreira">Samuel </option>
+                <option value="Marcos Graciano dos Santos">Marquinhos </option>
+                <option value="Rogerio Souza Lucena de Paiva">Rogerio </option>
+                <option value="Rogério Salvadeo Vieira">Johna</option>
+                <option value="Welison Ricardo de Andrade">Welison</option>
+            </Select>
+
+            <br>
+            Numero O.S.: <input type="text" id="saida" placeholder="saida" required ><input type="text" id="retorno" placeholder="retorno">
+
+            <br>
+            Data: <input type="date" id="data" required>
+
+
+            <br>
+            Serviço Executado: 
+            <input type="radio" name="service" value="Suporte" id="Suporte">Suporte 
+            <input type="radio" name="service" value="Retirada" id="Retirada">Retirada
+            
+            <br>
+            Equipamento: <input type="checkbox" value="Roteador" id="Roteador" onclick="lib_rot()">Roteador <input type="checkbox" value="ONU" id="ONU" onclick="lib_onu()">ONU
+
+            <br>
+            Mac equipamento: 
+            <br>Roteador<input type="text" id="mac_rot" placeholder="mac_rot" disabled> ONU<input type="text" id="mac_onu" placeholder="mac_onu" disabled>
+        
+        
+        
+        
+            <br>
+
+            <input type="button" onclick="test()" value="gogogo">
+            <input type="button" onclick="showValue()" value="eita">
+            <!--<input type="submit" value="Add">-->
+        
+        
+        
+
+    </form>
+
+
+    <script>
+        var tecnic = document.getElementById("tecnicos").nodeValue
+
+        var objEcts = [];
+
+
+        function test(){
+            // console.log(document.getElementById("tecnicos").value);
+            // console.log();
+            // console.log(document.getElementById("retorno").value);
+            // console.log(document.getElementById("data").value);
+            // if(document.getElementById("Suporte").checked){
+            //     console.log(document.getElementById("Suporte").value)
+            // }else{
+            //     console.log(document.getElementById("Retirada").value)
+            // }
+            // if(document.getElementById("Roteador").checked){
+            // console.log(document.getElementById("Roteador").value);
+            // console.log(document.getElementById("mac_rot").value);
+            // }else{
+
+            // }
+            // if(document.getElementById("ONU").checked){
+            // console.log(document.getElementById("ONU").value);
+            // console.log(document.getElementById("mac_onu").value);
+            // }
+
+             var sup=document.getElementById("Suporte").checked;
+             var ret=document.getElementById("Retirada").checked;
+
+             var roteador = document.getElementById("Roteador").checked;
+             var ONU = document.getElementById("ONU").checked;
+
+
+             var macOnu = "";
+             var macRoteador = "";
+            
+             if(document.getElementById("ONU").checked){
+                 macOnu=document.getElementById("mac_onu").value;
+             }else{
+                 macOnu="";
+             }
+
+             if(document.getElementById("Roteador").checked){
+                 macRoteador=document.getElementById("mac_rot").value;
+             }else{
+                 macRoteador="";
+             }
+
+
+        var myObj = {Tecnico: document.getElementById("tecnicos").value
+        , Saida: document.getElementById("saida").value
+        , Retorno: document.getElementById("retorno").value
+        , Data: document.getElementById("data").value
+        , Suporte: sup
+        , Retirada: ret
+        , Roteador: roteador
+        , MacRoteador: macRoteador
+        , ONU: ONU
+        , Mac_ONU: macOnu
+        
+        }
+        var myJson = JSON.stringify(myObj);
+
+        alert("Inserido.")
+
+        objEcts.push(myJson);
+
+
+        //document.write(myJson);
+        
+        }
+
+
+        function showValue(){
+            console.log(objEcts);
+            document.write(objEcts);
+        }
+
+
+
+
+
+
+
+        var sup = document.getElementById("suporte");
+        var ret = document.getElementById("Retirada");
+
+        function checkSup(){
+            if(sup.checked){
+                ret.disabled = true;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+    var onu = document.getElementById("ONU");
+    var roteador = document.getElementById("Roteador");
+
+    var txt_mac_rot = document.getElementById("mac_rot");
+    var txt_mac_onu = document.getElementById("mac_onu");
+
+        function lib_onu(){
+            if(onu.checked==true){
+                txt_mac_onu.disabled=false;
+            }else{
+                txt_mac_onu.disabled=true;
+            }
+
+        }
+
+        function lib_rot(){
+            if(roteador.checked==true){
+                txt_mac_rot.disabled=false;
+            }else{
+                txt_mac_rot.disabled=true;
+            }
+
+        }
+
+    </script>
+
+
+</body>
+</html>
