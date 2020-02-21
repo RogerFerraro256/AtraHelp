@@ -151,6 +151,8 @@
 
         var mdlRot="";
         var mdlOnu="";
+        var fntRot="";
+        var fntOnu="";
 
              if(document.getElementById("modelo").disabled){
                 mdlRot=""
@@ -163,7 +165,17 @@
              }else{
                  mdlOnu=document.getElementById("modeloOnu").value;
              }
+             if(!document.getElementById("FonteRoteador").checked){
+                fntRot=""
+             }else{
+                 fntRot=document.getElementById("FonteRoteador").checked;
+             }
 
+             if(!document.getElementById("FonteONU").checked){
+                fntOnu=""
+             }else{
+                fntOnu=document.getElementById("FonteONU").checked;
+             }
 
 
 
@@ -180,11 +192,11 @@
         , Retirada: ret
         , Roteador: roteador
         , Modelo: mdlRot
-        , ComFonte: document.getElementById("FonteRoteador").checked
+        , ComFonte: fntRot
         , MacRoteador: macRoteador
         , ONU: ONU
         , ModeloOnu: mdlOnu
-        , ComFonte2: document.getElementById("FonteONU").checked
+        , ComFonte2: fntOnu
         , Mac_ONU: macOnu
         , Adicionais: txt_adc
         }
