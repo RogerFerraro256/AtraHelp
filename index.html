@@ -40,6 +40,21 @@
             <br>
             Equipamento: <input type="checkbox" value="Roteador" id="Roteador" onclick="lib_rot()">Roteador <input type="checkbox" value="ONU" id="ONU" onclick="lib_onu()">ONU
             <br>
+            Modelo:<Select id="modelo" disabled>
+                <option value="TP-link 2 antenas">TP-link 2 antenas </option>
+                <option value="TP-link 4 antenas 5G">TP-link 4 antenas </option>
+                <option value="Intelbras 2 antenas">Intelbras 2 antenas </option>
+                <option value="TP-link 1 antena">TP-link 1 antena </option>
+            </Select>
+            Modelo:<Select id="modeloOnu" disabled>
+                <option value="Cianet">Cianet </option>
+                <option value="Edgecore">Edgecore </option>
+                <option value="Asky">Asky </option>
+                <option value="Blu">Blu </option>
+                <option value="Huawei Preta">Huawei Preta </option>
+                <option value="Huawei Branca">Huawei Branca </option>
+            </Select>
+            <br>
             Com Fonte: <input type="checkbox" value="FonteRoteador" id="FonteRoteador" onclick="lib_frot()">Roteador <input type="checkbox" value="FonteONU" id="FonteONU" onclick="lib_fonu()">ONU
             <br>
             <br>
@@ -134,11 +149,20 @@
 
 
 
+        var mdlRot="";
+        var mdlOnu="";
 
+             if(document.getElementById("modelo").disabled){
+                mdlRot=""
+             }else{
+                 mdlRot=document.getElementById("modelo").value;
+             }
 
-
-
-
+             if(document.getElementById("modeloOnu").disabled){
+                mdlOnu=""
+             }else{
+                 mdlOnu=document.getElementById("modeloOnu").value;
+             }
 
 
 
@@ -147,16 +171,19 @@
 
              
 
-        var myObj = {Tecnico: document.getElementById("tecnicos").value
-        , Saida: document.getElementById("saida").value
+        var myObj = {
+        Saida: document.getElementById("saida").value
         , Retorno: document.getElementById("retorno").value
+        ,Tecnico: document.getElementById("tecnicos").value
         , Data: document.getElementById("data").value
         , Suporte: sup
         , Retirada: ret
         , Roteador: roteador
+        , Modelo: mdlRot
         , ComFonte: document.getElementById("FonteRoteador").checked
         , MacRoteador: macRoteador
         , ONU: ONU
+        , ModeloOnu: mdlOnu
         , ComFonte2: document.getElementById("FonteONU").checked
         , Mac_ONU: macOnu
         , Adicionais: txt_adc
@@ -211,9 +238,11 @@
         function lib_onu(){
             if(onu.checked==true){
                 txt_mac_onu.disabled=false;
+                document.getElementById("modeloOnu").disabled=false;
                 txt_mac_onu.attributes.required="";
             }else{
                 txt_mac_onu.disabled=true;
+                document.getElementById("modeloOnu").disabled=true;
                 txt_mac_onu.attributes.required="required";
             }
 
@@ -222,10 +251,10 @@
         function lib_rot(){
             if(roteador.checked==true){
                 txt_mac_rot.disabled=false;
-
+                document.getElementById("modelo").disabled=false;
             }else{
                 txt_mac_rot.disabled=true;
-
+                document.getElementById("modelo").disabled=true;
             }
 
         }
