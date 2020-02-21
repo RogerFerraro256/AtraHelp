@@ -39,12 +39,23 @@
             
             <br>
             Equipamento: <input type="checkbox" value="Roteador" id="Roteador" onclick="lib_rot()">Roteador <input type="checkbox" value="ONU" id="ONU" onclick="lib_onu()">ONU
-
+            <br>
+            Com Fonte: <input type="checkbox" value="FonteRoteador" id="FonteRoteador" onclick="lib_frot()">Roteador <input type="checkbox" value="FonteONU" id="FonteONU" onclick="lib_fonu()">ONU
+            <br>
             <br>
             Mac equipamento: 
             <br>Roteador<input type="text" id="mac_rot" placeholder="mac_rot" disabled> ONU<input type="text" id="mac_onu" placeholder="mac_onu" disabled>
         
+
+            
         
+            <br>
+
+            Adicionais:
+                <input type="checkbox" value="Cabo de Rede" id="cabodrede">Cabo de Rede</input>
+                <input type="checkbox" value="Conector" id="conector">Conector Fibra Optica </input>
+ 
+
         
         
             <br>
@@ -108,6 +119,33 @@
                  macRoteador="";
              }
 
+             var txt_adc="";
+
+             if(document.getElementById("cabodrede").checked && document.getElementById("conector").checked){
+                txt_adc="Cabo de Rede e Conector Fibra Optica";
+             }else if(document.getElementById("cabodrede").checked){
+                txt_adc="Cabo de Rede";
+             }else if(document.getElementById("conector").checked){
+                txt_adc="Conector Fibra Optica";
+             }else{
+                 txt_adc="";
+             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+             
 
         var myObj = {Tecnico: document.getElementById("tecnicos").value
         , Saida: document.getElementById("saida").value
@@ -116,10 +154,12 @@
         , Suporte: sup
         , Retirada: ret
         , Roteador: roteador
+        , ComFonte: document.getElementById("FonteRoteador").checked
         , MacRoteador: macRoteador
         , ONU: ONU
+        , ComFonte2: document.getElementById("FonteONU").checked
         , Mac_ONU: macOnu
-        
+        , Adicionais: txt_adc
         }
         var myJson = JSON.stringify(myObj);
 
@@ -171,8 +211,10 @@
         function lib_onu(){
             if(onu.checked==true){
                 txt_mac_onu.disabled=false;
+                txt_mac_onu.attributes.required="";
             }else{
                 txt_mac_onu.disabled=true;
+                txt_mac_onu.attributes.required="required";
             }
 
         }
@@ -180,11 +222,16 @@
         function lib_rot(){
             if(roteador.checked==true){
                 txt_mac_rot.disabled=false;
+
             }else{
                 txt_mac_rot.disabled=true;
+
             }
 
         }
+
+
+
 
     </script>
 
