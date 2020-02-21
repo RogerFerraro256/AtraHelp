@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -177,26 +178,51 @@
                 fntOnu=document.getElementById("FonteONU").checked;
              }
 
+             var tpService;
 
+             if(document.getElementById("Suporte").checked){
+                tpService = "Suporte";
+             }else if(document.getElementById("Retirada")){
+                tpService="Retirada";
+             }
 
+             var txt_roteador,txt_ONU,txt_fntRot,txt_fntONU;
 
+             if(roteador==true){
+                txt_roteador="✔";
+             }else{
+                txt_roteador="✘";
+             }
+             if(ONU == true){
+                txt_ONU="✔";
+             }else{
+                txt_ONU="✘";
+             }
 
-             
+             if(fntRot==true){
+                txt_fntRot="✔"
+             }else{
+                txt_fntRot="✘"
+             }
+             if(fntOnu==true){
+                txt_fntONU="✔"
+             }else{
+                txt_fntONU="✘"
+             }
 
         var myObj = {
         Saida: document.getElementById("saida").value
         , Retorno: document.getElementById("retorno").value
         ,Tecnico: document.getElementById("tecnicos").value
         , Data: document.getElementById("data").value
-        , Suporte: sup
-        , Retirada: ret
-        , Roteador: roteador
+        , tipoService:  tpService
+        , Roteador: txt_roteador
         , Modelo: mdlRot
-        , ComFonte: fntRot
+        , ComFonte: txt_fntRot
         , MacRoteador: macRoteador
-        , ONU: ONU
+        , ONU: txt_ONU
         , ModeloOnu: mdlOnu
-        , ComFonte2: fntOnu
+        , ComFonte2: txt_fntONU
         , Mac_ONU: macOnu
         , Adicionais: txt_adc
         }
